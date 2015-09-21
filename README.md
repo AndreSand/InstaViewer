@@ -1,6 +1,6 @@
 # Project 1 - Instagram Viewer
 
-**Name of your app** is an android app that allows a user to check out popular photos from Instagram. The app utilizes Instagram API to display images and basic image information to the user.
+Instagram Viewer is an android app that allows a user to check out popular photos from Instagram. The app utilizes Instagram API to display images and basic image information to the user.
 
 Time spent: 6 hours spent in total
 
@@ -42,7 +42,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Good video tutorial:
+[Video](https://courses.codepath.com/course_videos/intro_to_android/105515674)
+:thumbsup::thumbsup::octocat:
 
 ## Open-source libraries used
 
