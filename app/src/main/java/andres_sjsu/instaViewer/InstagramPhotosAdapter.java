@@ -47,22 +47,30 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
         TextView tvlikes = (TextView)convertView.findViewById(R.id.likes);
         ImageView ivprofilePicture = (ImageView)convertView.findViewById(R.id.profilePicture);
 
-       // long timeInterval = System.currentTimeMillis() / 1000 - Long.parseLong(photo.createdTime);
+        TextView tvCreationTime = (TextView)convertView.findViewById(R.id.createdTime);
+
+
+       //long timeInterval = System.currentTimeMillis() / 1000 - Long.parseLong(photo.createdTime);
+        long timeInterval = System.currentTimeMillis() / 1000 - Long.parseLong(photo.createdTime);
+        tvCreationTime.setText(Utils.getTimeStringFromInterval(timeInterval));
 
         int CountLikes = photo.likesCount;
         String Likes = Integer.toString(CountLikes);
 
         tvuserName.setText(photo.username);
         tvCatption.setText(photo.caption);
-        tvlikes.setText(Likes+" likes");
+        tvlikes.setText(Likes + " likes");
 
         ivPhoto.setImageResource(0);
         ivprofilePicture.setImageResource(0);
 
         //PlaceHoder image, to wait to load img from instagram..
-       // Picasso.with(getContext()).load(photo.imageUrl).fit().centerCrop().placeholder(R.mipmap.ic_launcher).into(ivPhoto);
-        Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+
+        //Picasso.with(getContext()).load(photo.imageUrl).into(ivPhoto);
+        //Picasso.with(getContext()).load(photo.profilePictureUrl).into(ivprofilePicture);
+        Picasso.with(getContext()).load(photo.imageUrl).fit().centerCrop().placeholder(R.color.dim_foreground_disabled_material_dark).into(ivPhoto);
         Picasso.with(getContext()).load(photo.profilePictureUrl).into(ivprofilePicture);
+        // Picasso.with(getContext()).load(photo.profilePictureUrl).fit().centerCrop().placeholder(R.mipmap.ic_launcher).into(ivprofilePicture);
 
 
         return convertView;

@@ -2,11 +2,9 @@ package andres_sjsu.instaViewer;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import andres_sjsu.mylistdemo.R;
 import cz.msebera.android.httpclient.Header;
@@ -44,12 +43,12 @@ public class PhotosActivity extends Activity {
     private ArrayList<InstagramPhoto> photos;
     private InstagramPhotosAdapter aPhotos;
     private SwipeRefreshLayout swipeContainer;
+//    public List<InstagramPhoto> comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
-
+        setContentView(R.layout.main);
         photos = new ArrayList<>();
 
         aPhotos = new InstagramPhotosAdapter(this, photos);
@@ -82,14 +81,12 @@ public class PhotosActivity extends Activity {
             public void onSuccess(int statusCode,Header[] headers, JSONObject response) {
                 Log.i("DEBUG", response.toString());
                 swipeContainer.setRefreshing(false);
-
                 aPhotos.clear();
-
-
                 //iterate the JSON response, create JSON array, itereate each of the phto items and deceode the items into a java object
                 JSONArray photosJSON= null;
-                try{
-                        photosJSON= response.getJSONArray("data"); //array of posts
+
+                try
+                    {photosJSON= response.getJSONArray("data"); //array of posts
                         for (int i=0; i< photosJSON.length(); i++) {
                             JSONObject photoJSON = photosJSON.getJSONObject(i);
 
@@ -104,7 +101,16 @@ public class PhotosActivity extends Activity {
                             photo.profilePictureUrl = photoJSON.getJSONObject("user").getString("profile_picture");
                             //photo.createdTime = photoJSON.getJSONObject("created_time").getInt("created_time");
 
-                            photos.add(photo);
+                            photo.createdTime = photoJSON.getString("created_time");
+
+                            // Parse comments
+                            JSONObject commentsObj = photoJSON.getJSONObject("comments");//.getString("text");
+                            photo.commentCount = commentsObj.getInt("count");
+                             JSONArray commentsJSON = commentsObj.getJSONArray("data");
+
+
+
+                    photos.add(photo);
 
 
                         }

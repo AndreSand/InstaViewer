@@ -30,7 +30,9 @@
         android:hint="Comments"
         android:layout_below="@+id/likes"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +42,7 @@
         android:textSize="20sp"
         android:ellipsize="end"
         android:layout_marginTop="10dp"
-        android:textColor="#0d49f0"
+        android:textColor="#05216f"
         android:layout_marginLeft="10dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/profilePicture"
@@ -57,7 +59,9 @@
         android:visibility="visible"
         android:layout_below="@+id/ivPhoto"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#05216f"
+        android:layout_marginRight="20dp" />
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:scaleType="fitCenter"
@@ -93,14 +97,13 @@
         android:id="@+id/imageView4"
         android:src="@android:drawable/ic_menu_recent_history"
         android:layout_alignBottom="@+id/userName"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView" />
+        android:layout_toLeftOf="@+id/createdTime"
+        android:layout_toStartOf="@+id/createdTime" />
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:text="10hrs"
-        android:id="@+id/textView"
+        android:id="@+id/createdTime"
 
         android:layout_alignBottom="@+id/userName"
         android:layout_alignRight="@+id/ivPhoto"
